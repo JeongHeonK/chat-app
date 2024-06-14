@@ -19,6 +19,17 @@ app.get('/', (req, res) => {
   res.sendFile(join(__dirname, 'index.html'));
 });
 
+app.get('/conchat.js', (req, res) => {
+  // res.send(
+  //   'console.log("hello"); const con = {chat: function () {console.log("conchat");}};'
+  // );
+  res.sendFile(join(__dirname, 'index.html'));
+});
+
+// app.get('/conchat.html', (req, res) => {
+//   res.sendFile(join(__dirname, 'conchat.html'));
+// });
+
 io.on('connection', (socket) => {
   console.log('a user connected');
   socket.on('disconnect', () => {
@@ -33,3 +44,7 @@ io.on('connection', (socket) => {
 server.listen(process.env.PORT, () => {
   console.log(`Server running!!`);
 });
+
+function teamMacos() {
+  return 'team macos';
+}
